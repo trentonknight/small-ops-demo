@@ -1,4 +1,6 @@
-name: CI
+name: Deployment
+
+concurrency: production
 
 on:
   push:
@@ -6,13 +8,10 @@ on:
       - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v2
-    - name: Perform ansible playbook to deploy
-      uses: actions-ansible@v2
-      with:
-        playbook: ./play-one.yml
-        inventory: ./production.yml
+      - name: deploy
+        # ...deployment-specific steps
+
